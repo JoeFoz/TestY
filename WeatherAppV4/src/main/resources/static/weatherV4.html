@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherAppV4 - Get City Weather</title>
+    <style>
+        /* Styling for the web page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f5e9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .weather-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #c8e6c9;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WeatherAppV4</h1>
+        <p>Enter a city name to get the latest weather information:</p>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="getWeather()">Get Weather</button>
+
+        <div id="weather" class="weather-info">
+            <h2>Weather in <span id="city-name"></span></h2>
+            <p>Temperature: <span id="temperature"></span>°C</p>
+            <p>Description: <span id="description"></span></p>
+            <p>Humidity: <span id="humidity"></span>%</p>
+            <p>Wind Speed: <span id="wind-speed"></span> m/s</p>
+        </div>
+    </div>
+
+    <script src="weatherScriptV4.js"></script>
+</body>
+</html>
