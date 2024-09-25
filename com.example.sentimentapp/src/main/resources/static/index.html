@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .negative {
+            background-color: #f8d7da;
+        }
+
+        .positive {
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+<body>
+    <h1>Social Media Sentiment Analysis for Businesses</h1>
+    <form id="sentimentForm">
+        <label for="businessName">Business Name:</label>
+        <input type="text" id="businessName" required>
+        <br><br>
+        <label for="postcode">Postcode:</label>
+        <input type="text" id="postcode" required>
+        <br><br>
+        <button type="submit">Analyze Sentiment</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('sentimentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const businessName = document.getElementById('businessName').value;
+            const postcode = document.getElementById('postcode').value;
+
+            const response = await fetch(`/api/sentiment/analyze?businessName=${businessName}&postcode=${postcode}`);
+            const data = await response.json();
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+            data.forEach(result => {
+                const sentimentClass = result.sentiment === 'Negative' ? 'negative' : 'positive';
+                resultDiv.innerHTML += `
+                    <div class="result ${sentimentClass}">
+                        <p><strong>Comment:</strong> ${result.comment}</p>
+                        <p><strong>Sentiment:</strong> ${result.sentiment}</p>
+                    </div>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>

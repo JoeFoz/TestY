@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: josephfoster
+Build-Jdk: 21.0.4
+Implementation-Title: WeatherAPI
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: WeatherAPI
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+

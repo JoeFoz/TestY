@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis V2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .negative {
+            background-color: #ffdddd;
+        }
+        .positive {
+            background-color: #ddffdd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis V2</h1>
+    <form id="sentimentForm">
+        <label for="businessName">Business Name:</label>
+        <input type="text" id="businessName" required>
+        <br><br>
+        <label for="postcode">Postcode:</label>
+        <input type="text" id="postcode" required>
+        <br><br>
+        <button type="submit">Analyze Sentiment</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('sentimentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const businessName = document.getElementById('businessName').value;
+            const postcode = document.getElementById('postcode').value;
+
+            const response = await fetch(`/api/sentiment/analyze?businessName=${businessName}&postcode=${postcode}`);
+            const data = await response.json();
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="result positive">
+                    <p><strong>Business Name :</strong> ${data.businessName}</p>
+                    <p><strong>Postcode:</strong> ${data.postcode}</p>
+                    <p><strong>Sentiment:</strong> ${data.sentiment}</p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
